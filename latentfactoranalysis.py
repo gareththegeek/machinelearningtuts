@@ -1,5 +1,5 @@
 import implicit
-import spicy 
+from scipy.sparse import coo_matrix
 import pandas as pd
 
 dataFile = ".\\data\\ml-100k\\u.data"
@@ -12,7 +12,7 @@ data = pd.read_csv(
 
 data["userId"] = data["userId"].astype("category")
 data["itemId"] = data["itemId"].astype("category")
-rating_matrix = spicy.sparse.coo_matrix((data["rating"].astype(float),
+rating_matrix = coo_matrix((data["rating"].astype(float),
                             (data["itemId"].cat.codes.copy(),
                              data["userId"].cat.codes.copy())))
 
